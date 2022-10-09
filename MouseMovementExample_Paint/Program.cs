@@ -16,48 +16,18 @@ using System.Windows;
 using System.Runtime.InteropServices;
 //Needed for Screen method of getting screen size
 using System.Windows.Forms;
+//Needed for changing window size and location
+using WindowsWindowManager;
 
 namespace MacroConsoleAppExample
 {
 
-    /// <summary>
-    /// Rectangle Struct of a window defined here: https://www.pinvoke.net/default.aspx/user32.getwindowrect
-    /// </summary>
-    public struct Rect
-    {
-        /// <summary>
-        /// X position of upper-left corner
-        /// </summary>
-        public int Left { get; set; }
-        /// <summary>
-        /// Y position of upper-left corner
-        /// </summary>
-        public int Top { get; set; }
-        /// <summary>
-        /// X position of lower-right corner
-        /// </summary>
-        public int Right { get; set; }
-        /// <summary>
-        /// Y position of lower-right corner
-        /// </summary>
-        public int Bottom { get; set; }
-    }
     class Program
     {
 
         //Default path to paint in windows 10 and hopefully others
         static String PaintPath = @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Paint";
 
-
-        /// <summary>
-        /// Given a handlle and a struct reference, this will save the window's rect values into the passed rect
-        /// https://www.pinvoke.net/default.aspx/user32.getwindowrect
-        /// </summary>
-        /// <param name="hwnd">Window handle</param>
-        /// <param name="rectangle">Rectangle struct reference</param>
-        /// <returns>Success status</returns>
-        [DllImport("user32.dll")]
-        public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
 
         static void Main(string[] args)
         {
@@ -68,11 +38,11 @@ namespace MacroConsoleAppExample
             Process paintProcess = Process.Start(PaintPath);
 
             //wait for the process to have a window handle
-            waitForWindow(paintProcess);
+            WWM.waitForWindow(paintProcess);
+            //WWM.showWindowMaximized(paintProcess);
 
             //get the paint process' window rectangle
-            Rect paintWindowRect = new Rect();
-            GetWindowRect(paintProcess.MainWindowHandle, ref paintWindowRect);
+            WWM.Rect paintWindowRect = WWM.getWindowRect(paintProcess);
 
             //Calculate relevant values related to the rectangle
             int height = paintWindowRect.Bottom - paintWindowRect.Top;
@@ -82,16 +52,14 @@ namespace MacroConsoleAppExample
 
             //Print values
             Console.WriteLine("Paint Window Details:");
-            Console.WriteLine("Top:" + paintWindowRect.Top.ToString());
-            Console.WriteLine("Bottom:" + paintWindowRect.Bottom.ToString());
-            Console.WriteLine("Left:" + paintWindowRect.Left.ToString());
-            Console.WriteLine("Right:" + paintWindowRect.Right.ToString());
+            WWM.printRect(paintWindowRect);
             Console.WriteLine("Height: " + height);
             Console.WriteLine("Width: " + width);
             Console.WriteLine("Midpoint: (" + midWidth + "," + midHeight + ")");
 
             //Move the mouse to the middle of the paint window
             moveMouseToCoords(midWidth, midHeight, input);
+
 
 
             //Draw a shape of some kind
@@ -150,15 +118,6 @@ namespace MacroConsoleAppExample
 
             input.Mouse.MoveMouseTo(newX, newY);
 
-        }
-        public static void waitForWindow(Process proc)
-        {
-            Rect WindowRect = new Rect();
-            do
-            {
-                System.Threading.Thread.Sleep(10);
-                GetWindowRect(proc.MainWindowHandle, ref WindowRect);
-            } while (WindowRect.Left == WindowRect.Right);
         }
 
     }
