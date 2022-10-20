@@ -39,7 +39,9 @@ namespace MacroConsoleAppExample
 
             //wait for the process to have a window handle
             WWM.waitForWindow(paintProcess);
-            //WWM.showWindowMaximized(paintProcess);
+
+            //Maximize window
+            WWM.showWindowMaximized(paintProcess);
 
             //get the paint process' window rectangle
             WWM.Rect paintWindowRect = WWM.getWindowRect(paintProcess);
@@ -49,6 +51,22 @@ namespace MacroConsoleAppExample
             int width = paintWindowRect.Right - paintWindowRect.Left;
             int midWidth = (width / 2) + paintWindowRect.Left;
             int midHeight = (height / 2) + paintWindowRect.Top;
+            //97% width
+            int almostWidth = (int)(width - (((double)width) * .03));
+            //81% height
+            int almostHeight= (int)(height- (((double)height) * .19));
+
+            //resize canvas to match closer to screen size
+            input.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+            input.Keyboard.KeyPress(VirtualKeyCode.VK_E);
+            input.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+            input.Keyboard.TextEntry(almostWidth.ToString());
+            input.Keyboard.KeyPress(VirtualKeyCode.TAB);
+            input.Keyboard.TextEntry(almostHeight.ToString());
+            input.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+
+
+
 
             //Print values
             Console.WriteLine("Paint Window Details:");
@@ -61,8 +79,7 @@ namespace MacroConsoleAppExample
             moveMouseToCoords(midWidth, midHeight, input);
 
 
-
-            //Draw a shape of some kind
+            //Draw a shape of some kind of shape 
             input.Mouse.LeftButtonDown();
             input.Mouse.MoveMouseBy(-1 * (width / 4), 0);
             input.Mouse.Sleep(100);
@@ -84,9 +101,8 @@ namespace MacroConsoleAppExample
 
 
 
-
-            input.Mouse.Sleep(5000);
-            //Console.ReadKey();
+            Console.WriteLine("Press enter to close this window and the paint window.");
+            Console.ReadKey();
             try
             {
                 paintProcess.Kill();
