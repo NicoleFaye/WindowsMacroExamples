@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32428.217
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseMovementExample_Paint", "MouseMovementExample_Paint\MouseMovementExample_Paint.csproj", "{1FEB2146-A9B7-4EE1-9F54-F36783599B85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R3peat", "R3peat\R3peat.csproj", "{CD504641-AE32-4C2E-995A-10694E20CFCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1FEB2146-A9B7-4EE1-9F54-F36783599B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FEB2146-A9B7-4EE1-9F54-F36783599B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FEB2146-A9B7-4EE1-9F54-F36783599B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD504641-AE32-4C2E-995A-10694E20CFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD504641-AE32-4C2E-995A-10694E20CFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD504641-AE32-4C2E-995A-10694E20CFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD504641-AE32-4C2E-995A-10694E20CFCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
