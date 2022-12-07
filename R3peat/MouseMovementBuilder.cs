@@ -8,11 +8,19 @@ namespace R3peat
 {
     class MouseMovementBuilder
     {
-        public virtual void BuildMouseMovement() { }
+        private List<MouseMovementStep> Steps = new List<MouseMovementStep>();
+        public void BuildMouseMovement() {
+            Steps.Clear();
+        }
 
-        public virtual MouseMovement GetMouseMovement() { return null; }
+        public MouseMovement GetMouseMovement() {
+            return new MouseMovement(GetSteps());
+        }
 
         protected MouseMovementBuilder() { }
+        private List<MouseMovementStep> GetSteps() { 
+            return Steps;
+        }
 
     }
 }

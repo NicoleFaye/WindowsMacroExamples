@@ -9,8 +9,12 @@ namespace R3peat
     class MouseMovement : Action
     {
 
-        //make a builder/factory pattern
+        private List<MouseMovementStep> Steps = new List<MouseMovementStep>();
         public override void run() { 
+        }
+        public MouseMovement(List<MouseMovementStep> Steps)
+        {
+            this.Steps = Steps;
         }
     }
 }

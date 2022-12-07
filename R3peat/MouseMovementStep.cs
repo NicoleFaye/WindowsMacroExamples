@@ -8,12 +8,40 @@ namespace R3peat
 {
     internal class MouseMovementStep
     {
-        //private int DeltaX;
-        //private int DeltaY;
+        private ushort DestinationX;
+        private ushort DestinationY;
+        private int PauseDuration;
+        private int Variance;
 
-
-        private int DestinationX;
-        private int DestinationY;
-        private int Precision;
+        public MouseMovementStep(ushort x, ushort y,int newPauseDuration=500,int newVariance=0) {
+            this.DestinationX = x;
+            this.DestinationY = y;
+            this.PauseDuration = newPauseDuration;
+            this.Variance = newVariance;
+        }
+        public ushort GetDesinationX() {
+            return this.DestinationX;
+        }
+        public ushort GetDesinationY() {
+            return this.DestinationY;
+        }
+        public int GetPauseDuration() {
+            return this.PauseDuration;
+        }
+        public int GetVariance() {
+            return this.Variance;
+        }
+        public void SetDesinationX(ushort newX) {
+             this.DestinationX=newX;
+        }
+        public void SetDesinationY(ushort newY) {
+             this.DestinationY=newY;
+        }
+        public void SetPauseDuration(int newDuration) {
+             this.PauseDuration=newDuration;
+        }
+        public void SetVariance(int newVariance) {
+             this.Variance=newVariance;
+        }
     }
 }
