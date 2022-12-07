@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R3peat
 {
-    internal class MouseMovementStep
+    class MouseMovementStep
     {
         private ushort DestinationX;
         private ushort DestinationY;
