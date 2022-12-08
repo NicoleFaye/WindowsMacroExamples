@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsInput;
 
 namespace R3peat
 {
     class MouseMovementBuilder
     {
         private List<MouseMovementStep> Steps;
+        private InputSimulator Input;
         public void BuildMouseMovement() {
             this.Steps.Clear();
         }
@@ -16,10 +18,11 @@ namespace R3peat
             this.Steps.Add(newStep);
         }
         public MouseMovement GetMouseMovement() {
-            return new MouseMovement(this.Steps);
+            return new MouseMovement(this.Input,this.Steps);
         }
 
-        protected MouseMovementBuilder() { 
+        protected MouseMovementBuilder(InputSimulator newInput) {
+            this.Input = newInput;
             this.Steps = new List<MouseMovementStep>();
         }
 
