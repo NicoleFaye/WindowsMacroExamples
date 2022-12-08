@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="Pause.cs" />
     <Compile Include="MouseMovementStep.cs" />
     <Compile Include="MouseMovementBuilder.cs" />
     <Compile Include="MouseMovement.cs" />
