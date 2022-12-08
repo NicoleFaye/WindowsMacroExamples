@@ -9,7 +9,7 @@ namespace R3peat
     class MouseMovement : Action
     {
 
-        private List<MouseMovementStep> Steps = new List<MouseMovementStep>();
+        private List<MouseMovementStep> Steps;
         public override void run() { 
         }
         public MouseMovement(List<MouseMovementStep> Steps)

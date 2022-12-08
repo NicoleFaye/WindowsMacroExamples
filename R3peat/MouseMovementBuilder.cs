@@ -8,18 +8,19 @@ namespace R3peat
 {
     class MouseMovementBuilder
     {
-        private List<MouseMovementStep> Steps = new List<MouseMovementStep>();
+        private List<MouseMovementStep> Steps;
         public void BuildMouseMovement() {
-            Steps.Clear();
+            this.Steps.Clear();
         }
-
+        public void AddStep(MouseMovementStep newStep) { 
+            this.Steps.Add(newStep);
+        }
         public MouseMovement GetMouseMovement() {
-            return new MouseMovement(GetSteps());
+            return new MouseMovement(this.Steps);
         }
 
-        protected MouseMovementBuilder() { }
-        private List<MouseMovementStep> GetSteps() { 
-            return Steps;
+        protected MouseMovementBuilder() { 
+            this.Steps = new List<MouseMovementStep>();
         }
 
     }
