@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace R3peat
 {
-    public partial class Form1 : Form
+    public partial class EditorForm : Form
     {
-        public Form1()
+        public EditorForm()
         {
             InitializeComponent();
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
