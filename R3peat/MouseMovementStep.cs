@@ -8,37 +8,38 @@ namespace R3peat
 {
     class MouseMovementStep
     {
-        private ushort DestinationX;
-        private ushort DestinationY;
-        private int PauseDuration;
+        private ushort DestinationAbsoluteX;
+        private ushort DestinationAbsoluteY;
+        private int PauseMillisecondDuration;
         private int Variance;
 
-        public MouseMovementStep(ushort x, ushort y,int newPauseDuration=500,int newVariance=0) {
-            this.DestinationX = x;
-            this.DestinationY = y;
-            this.PauseDuration = newPauseDuration;
-            this.Variance = newVariance;
+        //rename x & y & desinationx and y  to indicate they are ushort values not coordinates in pixels
+        public MouseMovementStep(ushort AbsoluteX, ushort AbsoluteY,int PauseMillisecondDuration=500,int Variance=0) {
+            this.DestinationAbsoluteX = AbsoluteX;
+            this.DestinationAbsoluteY = AbsoluteY;
+            this.PauseMillisecondDuration = PauseMillisecondDuration;
+            this.Variance = Variance;
         }
-        public ushort GetDesinationX() {
-            return this.DestinationX;
+        public ushort GetDestinationAbsoluteX() {
+            return this.DestinationAbsoluteX;
         }
-        public ushort GetDesinationY() {
-            return this.DestinationY;
+        public ushort GetDestinationAbsoluteY() {
+            return this.DestinationAbsoluteY;
         }
-        public int GetPauseDuration() {
-            return this.PauseDuration;
+        public int GetPauseMillisecondDuration() {
+            return this.PauseMillisecondDuration;
         }
         public int GetVariance() {
             return this.Variance;
         }
         public void SetDesinationX(ushort newX) {
-             this.DestinationX=newX;
+             this.DestinationAbsoluteX=newX;
         }
         public void SetDesinationY(ushort newY) {
-             this.DestinationY=newY;
+             this.DestinationAbsoluteY=newY;
         }
         public void SetPauseDuration(int newDuration) {
-             this.PauseDuration=newDuration;
+             this.PauseMillisecondDuration=newDuration;
         }
         public void SetVariance(int newVariance) {
              this.Variance=newVariance;
