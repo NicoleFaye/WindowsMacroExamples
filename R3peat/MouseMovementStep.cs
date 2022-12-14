@@ -13,7 +13,6 @@ namespace R3peat
         private int PauseMillisecondDuration;
         private int Variance;
 
-        //rename x & y & desinationx and y  to indicate they are ushort values not coordinates in pixels
         public MouseMovementStep(ushort AbsoluteX, ushort AbsoluteY,int PauseMillisecondDuration=500,int Variance=0) {
             this.DestinationAbsoluteX = AbsoluteX;
             this.DestinationAbsoluteY = AbsoluteY;
