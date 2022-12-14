@@ -25,14 +25,19 @@ namespace R3peat
                 if(variance>ushort.MaxValue)variance=ushort.MaxValue;
                 else if (variance < 0) variance = 0;
 
-                //TODO
-                //account for varianceariance
+                //Account for variance
                 Random random=new Random();
-                ushort deltaX = Convert.ToUInt16(random.Next(variance * -1, variance));
-                ushort deltaY = Convert.ToUInt16(random.Next(variance * -1, variance));
-                //deltas are in pixels. need to convarianceert pixels to varianceirtual desktop ushort variancealue (should just be a multiplication based off screen size)
+                int deltaX = Convert.ToUInt16(random.Next(variance * -1, variance));
+                int deltaY = Convert.ToUInt16(random.Next(variance * -1, variance));
 
-                //once accounted for, need to make sure that x and y are in bounds of screen and ushort
+                ushort AbsoluteYPixelStepSize = CoordinateConversion.GetAbsoluteYPixelStepSize();
+                ushort AbsoluteXPixelStepSize = CoordinateConversion.GetAbsoluteXPixelStepSize();
+
+                //convert deltas from pixels to absolute value
+                int finalDeltaX = deltaX * (int)AbsoluteXPixelStepSize;
+                int finalDeltaY = deltaY * (int)AbsoluteYPixelStepSize;
+
+
 
                 this.Input.Mouse.MoveMouseTo(DestinationAbsoluteX, DestinationAbsoluteY);
                 Thread.Sleep(mouseMovementStep.GetPauseMillisecondDuration());
@@ -42,6 +47,14 @@ namespace R3peat
         {
             this.Input = Input;
             this.MouseMovementSteps = Steps;
+        }
+
+        private bool checkForOverflow(ushort startingValue, int delta) {
+            bool willOverflow = false;
+            if (startingValue > 0 && delta > 0) {
+                if(delta>(ushort.MaxValue-startingValue)) willOverflow = true;
+            }
+            return willOverflow;
         }
     }
 }
