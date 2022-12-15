@@ -21,12 +21,12 @@ namespace R3peat
                 ushort DestinationAbsoluteY = mouseMovementStep.GetDestinationAbsoluteY();
 
 
-                int variance =mouseMovementStep.GetVariance();
-                if(variance>ushort.MaxValue)variance=ushort.MaxValue;
+                int variance = mouseMovementStep.GetVariance();
+                if (variance > ushort.MaxValue) variance = ushort.MaxValue;
                 else if (variance < 0) variance = 0;
 
                 //Account for variance
-                Random random=new Random();
+                Random random = new Random();
                 int deltaX = Convert.ToUInt16(random.Next(variance * -1, variance));
                 int deltaY = Convert.ToUInt16(random.Next(variance * -1, variance));
 
@@ -37,6 +37,33 @@ namespace R3peat
                 int finalDeltaX = deltaX * (int)AbsoluteXPixelStepSize;
                 int finalDeltaY = deltaY * (int)AbsoluteYPixelStepSize;
 
+                if (checkForOverflow(DestinationAbsoluteX, deltaX))
+                {
+                    if (deltaX < 0)
+                    {
+                        DestinationAbsoluteX = 0;
+                    }
+                    else
+                    {
+                        DestinationAbsoluteX = ushort.MaxValue;
+                    }
+                }
+                else {
+                    DestinationAbsoluteX = (ushort)((int)DestinationAbsoluteX+ deltaX);
+                }
+
+                if (checkForOverflow(DestinationAbsoluteY, deltaY)) { 
+                    if (deltaY < 0)
+                    {
+                        DestinationAbsoluteY = 0;
+                    }
+                    else
+                    {
+                        DestinationAbsoluteY = ushort.MaxValue;
+                    }
+                } else {
+                    DestinationAbsoluteY = (ushort)((int)DestinationAbsoluteY+ deltaY);
+                }
 
 
                 this.Input.Mouse.MoveMouseTo(DestinationAbsoluteX, DestinationAbsoluteY);
@@ -49,10 +76,17 @@ namespace R3peat
             this.MouseMovementSteps = Steps;
         }
 
-        private bool checkForOverflow(ushort startingValue, int delta) {
+        private bool checkForOverflow(ushort startingValue, int delta)
+        {
             bool willOverflow = false;
-            if (startingValue > 0 && delta > 0) {
-                if(delta>(ushort.MaxValue-startingValue)) willOverflow = true;
+            if (startingValue > 0 && delta > 0)
+            {
+                if (delta > (ushort.MaxValue - startingValue)) willOverflow = true;
+            }
+
+            if (delta + (int)startingValue < 0)
+            {
+                willOverflow = true;
             }
             return willOverflow;
         }
