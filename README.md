@@ -1,3 +1,7 @@
+# Abandoned Project in favor of [R3peat](https://github.com/NicoleFaye/R3peat)
+
+
+
 # WindowsMacroExamples
  A collection of example code of simulated input in windows using libraries such as InputSimulator and NHotkey
 
